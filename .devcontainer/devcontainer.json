@@ -3,13 +3,13 @@
 {
     "name": "Mica Development",
     "dockerFile": "Dockerfile",
-    "containerUser": "vscode",
+    "containerUser": "root",
     "context": ".",
     "build": {
         "args": {
             "ARCHITECTURE": "linux/amd64",
-            "BASE_IMG": "ubuntu:24.04",
-            "TARGET_USER": "vscode"
+            "BASE_IMG": "ubuntu:25.10",
+            "TARGET_USER": "root"
         }
     },
     "customizations": {
@@ -20,7 +20,7 @@
                 "github.vscode-pull-request-github"
             ]
         }
-    }
+    },
     // Features to add to the dev container. More info: https://containers.dev/features.
     // "features": {},
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -30,5 +30,9 @@
     // Configure tool-specific properties.
     // "customizations": {}
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-    // "remoteUser": "root"
+    "remoteUser": "root",
+    // Enable privileged mode for the container to allow GDB debugging without any restrictions or issues.
+    "runArgs": [
+        "--privileged"
+    ]
 }
