@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install --yes \
     gdb \
     python3-pip \
     python-is-python3 \
-    build-essential
+    binutils
 
 # Create a non-root user to use if preferred - see https://aka.ms/vscode-remote/containers/non-root-user
 ARG TARGET_USER
