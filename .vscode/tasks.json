@@ -1,0 +1,82 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Selected Mica Example",
+      "type": "shell",
+      "command": "/usr/bin/mica",
+      "args": [
+        "--purge",
+        "--compile",
+        "--link",
+        "--optimize",
+        "${input:optimizationLevel}",
+        "--quality",
+        "${input:qualityGate}",
+        "--platform",
+        "${input:targetPlatform}",
+        "--export",
+        "--source",
+        "${input:exampleFile}",
+        "--build",
+        "build"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "exampleFile",
+      "type": "pickString",
+      "description": "Select example file to build",
+      "default": "hello_world/hello_world.mica",
+      "options": [
+        "hello_world/hello_world.mica"
+      ]
+    },
+    {
+      "id": "targetPlatform",
+      "type": "pickString",
+      "description": "Select target platform",
+      "default": "Linux,AMD64,UTF-32",
+      "options": [
+        "Linux,AMD64,UTF-32",
+        "Linux,AMD64,UTF-8"
+      ]
+    },
+    {
+      "id": "optimizationLevel",
+      "type": "pickString",
+      "description": "Select optimization level",
+      "default": "debug",
+      "options": [
+        "debug",
+        "release",
+        "constant_folding"
+      ]
+    },
+    {
+      "id": "qualityGate",
+      "type": "pickString",
+      "description": "Select quality gate test runs",
+      "default": "no_quality_test_runs",
+      "options": [
+        "no_quality_test_runs",
+        "static_analyzer",
+        "constant_folding",
+        "intermediate_code"
+      ]
+    }
+  ]
+}
