@@ -1,5 +1,6 @@
 { The classic 'Hello World' program in Mica }
 program hello_world;
+imp writeln : std;
 begin
     writeln("Hello, World!");
 end.

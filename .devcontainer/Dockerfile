@@ -7,7 +7,7 @@ ARG BASE_IMG
 FROM --platform=${ARCHITECTURE} ${BASE_IMG}
 
 # Ensure that the system is up to date, and the prerequisites are installed
-RUN apt-get update && apt-get install --yes \
+RUN apt-get update && apt-get upgrade && apt-get install --yes \
     sudo \
     lsb-release \
     curl \
@@ -43,3 +43,8 @@ ENV DEBIAN_FRONTEND=dialog
 
 # Create local bin directory in the user's home
 RUN mkdir --parents "${HOME}/.local/bin"
+
+# Download and install the Mica compiler from GitHub releases
+RUN wget -q https://github.com/mica-development/mica-tutorials/releases/download/v0.0.1/mica_4.0.0_amd64.deb \
+    && apt-get install --yes ./mica_4.0.0_amd64.deb \
+    && rm mica_4.0.0_amd64.deb
