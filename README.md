@@ -1,4 +1,4 @@
-# 🚀 Getting Started with Mica Programming Language
+# 🚀 Getting Started with the Mica Programming Language
 
 Welcome to the Mica programming language tutorials! This guide will walk you through everything you need to start developing with Mica using GitHub Codespaces and Visual Studio Code.
 
