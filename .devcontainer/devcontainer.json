@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/go
 {
-    "name": "Go and C/C++ Development",
+    "name": "Mica Development",
     "dockerFile": "Dockerfile",
     "containerUser": "vscode",
     "context": ".",
@@ -19,7 +19,15 @@
                 "github.copilot-chat",
                 "github.vscode-pull-request-github",
                 "ms-vscode.cpptools"
-            ]
+            ],
+            "settings": {
+                "extensions.ignoreRecommendations": true,
+                "remote.extensionKind": {
+                    "golang.go": [
+                        "ui"
+                    ]
+                }
+            }
         }
     }
     // Features to add to the dev container. More info: https://containers.dev/features.
