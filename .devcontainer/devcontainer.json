@@ -3,6 +3,7 @@
 {
     "name": "Mica Development",
     "dockerFile": "Dockerfile",
+    "containerUser": "vscode",
     "context": ".",
     "build": {
         "args": {

@@ -43,11 +43,3 @@ ENV DEBIAN_FRONTEND=dialog
 
 # Create local bin directory in the user's home
 RUN mkdir --parents "${HOME}/.local/bin"
-
-# Download and install the Mica compiler from GitHub releases
-RUN wget -q https://github.com/mica-development/mica-tutorials/releases/download/v0.0.1/mica_4.0.0_amd64.deb \
-    && apt-get install --yes --no-install-recommends ./mica_4.0.0_amd64.deb \
-    && rm mica_4.0.0_amd64.deb \
-    && apt-get remove --yes gcc gcc-* g++ g++-* cpp cpp-* || true \
-    && apt-get autoremove --yes \
-    && apt-get clean
