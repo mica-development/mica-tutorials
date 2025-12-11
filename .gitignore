@@ -419,3 +419,4 @@ FodyWeavers.xsd
 
 # Mica Programming Language
 build/
+*.deb
