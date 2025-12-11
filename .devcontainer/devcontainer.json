@@ -3,13 +3,12 @@
 {
     "name": "Mica Development",
     "dockerFile": "Dockerfile",
-    "containerUser": "root",
     "context": ".",
     "build": {
         "args": {
             "ARCHITECTURE": "linux/amd64",
             "BASE_IMG": "ubuntu:25.10",
-            "TARGET_USER": "root"
+            "TARGET_USER": "vscode"
         }
     },
     "customizations": {
@@ -31,7 +30,7 @@
     // Configure tool-specific properties.
     // "customizations": {}
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-    "remoteUser": "root",
+    // "remoteUser": "root",
     // Enable privileged mode for the container to allow GDB debugging without any restrictions or issues.
     "runArgs": [
         "--privileged"
