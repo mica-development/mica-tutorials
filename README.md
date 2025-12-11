@@ -20,18 +20,16 @@ To add them:
   },
   {
     "key": "f6",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Build Selected Mica Example"
+  },
+  {
+    "key": "f7",
     "command": "workbench.action.debug.selectandstart",
     "args": {
       "config": "Debug Current Mica Binary"
     },
     "when": "debuggersAvailable"
-  },
-  {
-    "key": "f7",
-    "command": "workbench.action.tasks.runTask",
-    "args": "Build Selected Mica Example"
   }
 ]
 ```
-
-// ...existing code...
