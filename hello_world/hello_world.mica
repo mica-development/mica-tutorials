@@ -1,6 +1,21 @@
-{ The classic 'Hello World' program in Mica }
+{ 
+    Mica Hello World Example
+
+    This example demonstrates the simplest possible Mica program.
+
+    It showcases the basic structure of a Mica program including:
+       - Program declaration
+       - Importing standard library functions
+       - Main program block with a compound statement
+    
+    This is the traditional first program for learning any programming language, printing "Hello, World!" to the console.
+}
 program hello_world;
-imp writeln : std;
-begin
+
+imp 
+    writeln : std;
+
+begin { main program }
     writeln("Hello, World!");
+    exit := 0  { return exit code to operating system }
 end.

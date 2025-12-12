@@ -1,0 +1,77 @@
+{ 
+    Mica Type Promotion and Cast Example
+
+    This example demonstrates implicit and intended type promotions in Mica. Intended type promotions are also known as type casts.
+
+    Key Concepts Covered:
+    
+    1. IMPLICIT PROMOTIONS
+       - The compiler automatically promotes smaller types to larger compatible types
+       - Example: int32 literals are automatically promoted to int64 when assigned to int64 variables
+       - This happens at compile-time with no runtime overhead
+       - Safe because no data loss occurs when promoting to a larger type
+    
+    2. INTENDED PROMOTIONS (Type Casts)
+       - Explicit type conversions using the 'as' keyword
+       - Example: float64 as float32 - explicitly converts a float64 to float32
+       - Useful when you need to control the exact type being used
+       - May result in precision loss (e.g., float64 to float32) or value truncation (e.g., int32 to int8)
+    
+    3. COMBINED PROMOTIONS
+       - Intended promotion followed by implicit promotion
+       - Example: (value as int8) assigned to int32 - first casts to int8, then implicitly promotes to int32
+       - Demonstrates the type system's flexibility while maintaining type safety
+    
+    4. CONSTANT FOLDING
+       - The compiler evaluates constant expressions at compile-time
+       - Multiple literals can be promoted and computed before runtime
+       - Optimized away in release builds for maximum performance
+
+    Types Used:
+    - Integer types: int8 (8-bit), int16 (16-bit), int32 (32-bit), int64 (64-bit)
+    - Floating-point types: float32 (single precision), float64 (double precision)
+
+    All promotions in this example occur at compile-time, demonstrating Mica's powerful compile-time type system and optimization capabilities.
+}
+program promotions;
+
+imp 
+    writeln : std;
+
+var 
+    i32 : int32;
+    i64 : int64;
+    f32 : float32;
+    f64 : float64;
+
+begin { main program }
+    { Implicit promotion }
+    i64 := 42; // int32 literal promoted to int64 at compile-time
+    writeln("Implicit promotion: %ld", i64);
+
+    { Implicit promotions and then constant folding }
+    i64 := 5 * 4 * 3; // individual int32 literals promoted to int64 at compile-time
+    writeln("Implicit promotions and then constant folding (in release build): %ld", i64);
+
+    { Intended promotion }
+    f32 := 3.14159265359 as float32; // float64 literal intentionally promoted to float32 at compile-time
+    writeln("Intended promotion: %f", f32);
+
+    { Intended promotion and then implicit promotion }
+    f64 := 3.14159265359 as float32; // float64 literal intentionally promoted to float32, then implicitly promoted back to float64 at compile-time
+    writeln("Intended promotion and then implicit promotion: %f", f64);
+
+    { Intended promotion and then implicit promotion }
+    i32 := 127 as int8; // int32 literal intentionally promoted to int8, then implicitly promoted back to int32 at compile-time
+    writeln("Intended promotion and then implicit promotion: %d", i32);
+
+    { Intended promotion and then implicit promotion }
+    i64 := 1000 as int16; // int32 literal intentionally promoted to int16, then implicitly promoted back to int64 at compile-time
+    writeln("Intended promotion and then implicit promotion: %ld", i64);
+
+    { Intended promotion and then implicit promotion }
+    i64 := -42 as int16; // int32 negative literal intentionally promoted to int16, then implicitly promoted back to int64 at compile-time
+    writeln("Intended promotion and then implicit promotion: %ld", i64);
+
+    exit := 0  // return exit code to operating system
+end.
