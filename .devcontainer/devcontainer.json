@@ -18,15 +18,11 @@
                 "github.copilot",
                 "github.copilot-chat",
                 "github.vscode-pull-request-github",
-                "ms-vscode.cpptools"
+                "ms-vscode.cpptools",
+                "mica-development-ug.mica-language"
             ],
             "settings": {
-                "extensions.ignoreRecommendations": true,
-                "remote.extensionKind": {
-                    "golang.go": [
-                        "ui"
-                    ]
-                }
+                "extensions.ignoreRecommendations": true
             }
         }
     }
