@@ -1,5 +1,5 @@
 { 
-    Mica Nested Functions Example - "Nesting Craziness"
+    Mica Nested Functions Example called "Nesting Craziness"
 
     This example demonstrates one of Mica's most powerful features inherited from Pascal:
     nested function definitions with full access to parent scope variables.

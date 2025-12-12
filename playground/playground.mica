@@ -1,0 +1,221 @@
+{ 
+    Mica Playground Example 
+    
+    This example serves as a basic playground to demonstrate fundamental features of the Mica programming language. 
+    It showcases the declaration and usage of all numeric types available in Mica, including both signed and unsigned integers of various sizes, as well as floating-point types.
+    Additionally, it illustrates the use of pointers with these numeric types, including dereferencing and modifying values through pointers.
+    
+    The program must be compiled with UTF-32 encoding to properly handle Unicode characters and strings. 
+    An UTF-8 based compilation will result in semantic analysis errors and help the programmer identify encoding issues early.
+
+    The order of function and procedure declarations is flexible in Mica, allowing for a more natural coding style without the need for forward declarations.
+    
+    Due to its simplicity, it is ideal for beginners to get acquainted with Mica's syntax and capabilities.
+}
+program playground;
+
+{ import 'writeln' function from Mica's standard library }
+imp 
+    writeln : std;
+
+{ declare variables of all numeric types in Mica }
+{ all variables are initialized to zero by default }
+var                
+    i8  : int8;
+    i16 : int16;
+    i32 : int32;
+    i64 : int64;
+    u8  : uint8;
+    u16 : uint16;
+    u32 : uint32;
+    u64 : uint64;
+    f32 : float32;
+    f64 : float64;
+
+{ function to demonstrate all numeric types in Mica }
+function AllNumericTypes(aInt8    : int8, 
+                         aInt16   : int16, 
+                         aInt32   : int32,
+                         aInt64   : int64,
+                         aUint8   : uint8,
+                         aUint16  : uint16,
+                         aUint32  : uint32,
+                         aUint64  : uint64,
+                         aFloat32 : float32,
+                         aFloat64 : float64) : bool;
+begin
+    AllNumericTypes := True;                // return value can be set anywhere in the function body
+
+    writeln("int8: %hhd", aInt8);           // print int8 using appropriate format specifier
+    writeln("int16: %hd", aInt16);          // print int16 using appropriate format specifier
+    writeln("int32: %d", aInt32);           // print int32 using appropriate format specifier
+    writeln("int64: %ld", aInt64);          // print int64 using appropriate format specifier
+    writeln("uint8: %hhu", aUint8);         // print uint8 using appropriate format specifier
+    writeln("uint16: %hu", aUint16);        // print uint16 using appropriate format specifier
+    writeln("uint32: %u", aUint32);         // print uint32 using appropriate format specifier
+    writeln("uint64: %lu", aUint64);        // print uint64 using appropriate format specifier
+    writeln("float32: %f", aFloat32);       // print float32 using appropriate format specifier
+    writeln("float64: %lf", aFloat64);      // print float64 using appropriate format specifier
+    writeln("float32: %e", aFloat32);       // print float32 in scientific notation
+    writeln("float64: %le", aFloat64);      // print float64 in scientific notation
+
+    // call another function to demonstrate pointer usage with all numeric types
+    AllNumericTypesAsPointers(address aInt8, address aInt16, address aInt32, address aInt64,
+                              address aUint8, address aUint16, address aUint32, address aUint64,
+                              address aFloat32, address aFloat64);
+
+    // print modified parameters after pointer procedure call and note the overflow behavior of signed and unsigned integers
+    writeln("Modified int8 value from within \"AllNumericTypesAsPointers\": %hhd", aInt8);
+    writeln("Modified int16 value from within \"AllNumericTypesAsPointers\": %hd", aInt16);
+    writeln("Modified int32 value from within \"AllNumericTypesAsPointers\": %d", aInt32);
+    writeln("Modified int64 value from within \"AllNumericTypesAsPointers\": %ld", aInt64);
+    writeln("Modified uint8 value from within \"AllNumericTypesAsPointers\": %hhu", aUint8);
+    writeln("Modified uint16 value from within \"AllNumericTypesAsPointers\": %hu", aUint16);
+    writeln("Modified uint32 value from within \"AllNumericTypesAsPointers\": %u", aUint32);
+    writeln("Modified uint64 value from within \"AllNumericTypesAsPointers\": %lu", aUint64);
+    writeln("Modified float32 value from within \"AllNumericTypesAsPointers\": %f", aFloat32);
+    writeln("Modified float64 value from within \"AllNumericTypesAsPointers\": %lf", aFloat64);
+end;
+
+{ function to demonstrate all numeric types as pointers in Mica }
+function AllNumericTypesAsPointers(aInt8    : pointer int8, 
+                                   aInt16   : pointer int16, 
+                                   aInt32   : pointer int32,
+                                   aInt64   : pointer int64,
+                                   aUint8   : pointer uint8,
+                                   aUint16  : pointer uint16,
+                                   aUint32  : pointer uint32,
+                                   aUint64  : pointer uint64,
+                                   aFloat32 : pointer float32,
+                                   aFloat64 : pointer float64) : bool;
+begin
+    AllNumericTypesAsPointers := True;          // return value can be set anywhere in the function body
+
+    writeln("int8: %hhd",  value aInt8);        // print dereferenced int8 using appropriate format specifier
+    writeln("int16: %hd", value aInt16);        // print dereferenced int16 using appropriate format specifier
+    writeln("int32: %d",  value aInt32);        // print dereferenced int32 using appropriate format specifier
+    writeln("int64: %ld",  value aInt64);       // print dereferenced int64 using appropriate format specifier
+    writeln("uint8: %hhu", value aUint8);       // print dereferenced uint8 using appropriate format specifier
+    writeln("uint16: %hu", value aUint16);      // print dereferenced uint16 using appropriate format specifier
+    writeln("uint32: %u",  value aUint32);      // print dereferenced uint32 using appropriate format specifier
+    writeln("uint64: %lu",  value aUint64);     // print dereferenced uint64 using appropriate format specifier
+    writeln("float32: %f", value aFloat32);     // print dereferenced float32 using appropriate format specifier
+    writeln("float64: %lf", value aFloat64);    // print dereferenced float64 using appropriate format specifier
+    writeln("float32: %e", value aFloat32);     // print dereferenced float32 in scientific notation
+    writeln("float64: %le", value aFloat64);    // print dereferenced float64 in scientific notation
+
+    // operator precedence demonstration with pointer dereferencing and arithmetic operations
+    value aInt8 := value aInt8 + (1 as int8);           // modify the value pointed to by aInt8
+    value aInt16 := value aInt16 + (1 as int16);        // modify the value pointed to by aInt16
+    value aInt32 := value aInt32 + 1;                   // modify the value pointed to by aInt32
+    value aInt64 := value aInt64 + 1;                   // modify the value pointed to by aInt64
+    value aUint8 := value aUint8 + (1 as uint8);        // modify the value pointed to by aUint8
+    value aUint16 := value aUint16 + (1 as uint16);     // modify the value pointed to by aUint16
+    value aUint32 := value aUint32 + (1 as uint32);     // modify the value pointed to by aUint32
+    value aUint64 := value aUint64 + (1 as uint64);     // modify the value pointed to by aUint64
+    value aFloat32 := value aFloat32 + (1 as float32);  // modify the value pointed to by aFloat32
+    value aFloat64 := value aFloat64 + 1;               // modify the value pointed to by aFloat64
+end;
+
+{ recursive Fibonacci function }
+function Fibonacci(n : int32) : int64;
+begin
+    if n <= 1 then
+    begin
+        Fibonacci := n as int64;
+        leave; // early return for base cases just to demonstrate 'leave' statement
+    end
+    else
+        Fibonacci := Fibonacci(n - 1) + Fibonacci(n - 2);
+end;
+
+{ iterative Fibonacci function for comparison }
+function FibonacciIterative(n : int32) : int64;
+var
+    a, b, temp : int64;
+    i          : int32;
+begin
+    a := 0;
+    b := 1;
+
+    if n <= 1 then
+    begin
+        FibonacciIterative := n as int64;
+        leave; // early return for base cases just to demonstrate 'leave' statement
+    end
+    else
+    begin
+        i := 2;
+
+        while i <= n do
+        begin
+            temp := a + b;
+            a := b;
+            b := temp;
+            i := i + 1;
+        end;
+
+        FibonacciIterative := b;
+    end;
+end;
+
+begin { main program }
+    // test all numeric types, demonstrate type casting, and print the return value of the function call
+    writeln("All numeric types and a boolean result as 8-bit unsigned integer: %hhu\n", 
+            AllNumericTypes(127 as int8, 32767 as int16, 2147483647, 9223372036854775807,
+                            255 as uint8, 65535 as uint16, 4294967295, 18446744073709551615,
+                            3.4028235e+38 as float32, 1.7976931348623157e+308));
+
+    // take some arbitrary values for all numeric types
+    i8  := 42 as int8;
+    i16 := 4200 as int16;
+    i32 := 420000;
+    i64 := 42000000000;
+    u8  := 84 as uint8;
+    u16 := 8400 as uint16;  
+    u32 := 840000 as uint32;
+    u64 := 84000000000 as uint64;
+    f32 := 3.14 as float32;
+    f64 := 3.141592653589793;
+
+    // test all numeric types as pointers, demonstrate dereferencing, and print the return value of the function call
+    writeln("All numeric types as pointers and a boolean result as 8-bit unsigned integer: %hhu", 
+            AllNumericTypesAsPointers(address i8, address i16, address i32, address i64,
+                                      address u8, address u16, address u32, address u64,
+                                      address f32, address f64));
+
+    // print modified values after pointer procedure call
+    writeln("Modified int8 value after from \"main\": %hhd", i8);
+    writeln("Modified int16 value after from \"main\": %hd", i16);
+    writeln("Modified int32 value after from \"main\": %d", i32);
+    writeln("Modified int64 value after from \"main\": %ld", i64);
+    writeln("Modified uint8 value after from \"main\": %hhu", u8);
+    writeln("Modified uint16 value after from \"main\": %hu", u16);
+    writeln("Modified uint32 value after from \"main\": %u", u32);
+    writeln("Modified uint64 value after from \"main\": %lu", u64);
+    writeln("Modified float32 value after from \"main\": %f", f32);
+    writeln("Modified float64 value after from \"main\": %lf", f64);
+
+    { Fibonacci recursive demonstration }
+    writeln("\nFibonacci sequence (recursive):");
+    writeln("Fib(0) = %ld", Fibonacci(0));
+    writeln("Fib(1) = %ld", Fibonacci(1));
+    writeln("Fib(5) = %ld", Fibonacci(5));
+    writeln("Fib(10) = %ld", Fibonacci(10));
+    writeln("Fib(20) = %ld", Fibonacci(20));
+    writeln("Fib(30) = %ld", Fibonacci(30));
+    writeln("Fib(40) = %ld", Fibonacci(40));
+    
+    { Fibonacci iterative demonstration }
+    writeln("\nFibonacci sequence (iterative):");
+    writeln("Fib(0) = %ld", FibonacciIterative(0));
+    writeln("Fib(1) = %ld", FibonacciIterative(1));
+    writeln("Fib(5) = %ld", FibonacciIterative(5));
+    writeln("Fib(10) = %ld", FibonacciIterative(10));
+    writeln("Fib(20) = %ld", FibonacciIterative(20));
+    writeln("Fib(30) = %ld", FibonacciIterative(30));
+    writeln("Fib(40) = %ld", FibonacciIterative(40));
+    writeln("Fib(90) = %ld", FibonacciIterative(90));
+
+    exit := 0   // return exit code to the operating system
+end.
