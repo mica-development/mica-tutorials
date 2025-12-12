@@ -149,11 +149,27 @@ Let's run the classic "Hello, World!" program to ensure everything is working.
    cat hello_world.mica
    ```
 
-3. **Compile and run:**
+3. **Compile with debug information and link:**
    ```bash
-   mica --compile --link --source hello_world.mica --build ../build --purge
-   ../build/hello_world
+   mica --compile --link --purge --optimize debug --source hello_world.mica --build ../build
    ```
+
+4. **Run the example and verify the size of its executable:**
+   ```bash
+   ../build/hello_world
+   ll ../build/hello_world
+   ```   
+
+5. **Compile without debug information and link:**
+   ```bash
+   mica --compile --link --purge --optimize release --source hello_world.mica --build ../build
+   ```
+
+6. **Run the example and verify the size of its executable again:**
+   ```bash
+   ../build/hello_world
+   ll ../build/hello_world
+   ```   
 
 Congratulations! You've just run your first Mica program! 🎉
 
