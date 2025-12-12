@@ -9,7 +9,7 @@ Before you begin, you'll need:
 - An internet connection
 - A web browser
 
-No local installation required! We'll use GitHub Codespaces for a ready-to-code environment.
+No local installation required. We'll use GitHub Codespaces for a ready-to-code environment.
 
 ---
 
@@ -37,7 +37,7 @@ This repository contains a curated collection of Mica programming examples, each
 5. **utf_sources** - Discover Mica's powerful Unicode support
 6. **nesting_craziness** - Master advanced scoping and nested functions
 
-Each example includes comprehensive comments explaining the concepts being demonstrated. Feel free to modify the examples and experiment with the code!
+Each example includes comprehensive comments explaining the concepts being demonstrated. Feel free to modify the examples and experiment with the code.
 
 ---
 
@@ -95,7 +95,7 @@ sudo dnf install code
 
 ## Step 3: Connect to a GitHub Codespace
 
-GitHub Codespaces provides a complete development environment in the cloud, so you don't need to install anything locally!
+GitHub Codespaces provides a complete development environment in the cloud, so you don't need to install anything locally.
 
 ### Option A: Create Codespace from GitHub Website
 
@@ -104,7 +104,7 @@ GitHub Codespaces provides a complete development environment in the cloud, so y
 3. Select the **Codespaces** tab
 4. Click **Create codespace on main**
 5. Wait for the codespace to initialize (this may take 1-2 minutes)
-6. Your browser will open a VS Code environment ready to use!
+6. Your browser will open a VS Code environment ready to use.
 
 ### Option B: Create Codespace from VS Code
 
@@ -116,7 +116,7 @@ GitHub Codespaces provides a complete development environment in the cloud, so y
 6. Choose the **main** branch
 7. Select your preferred machine type (2-core is sufficient for learning)
 8. Wait for the codespace to initialize
-9. Your codespace is ready!
+9. Your codespace is ready.
 
 ---
 
@@ -159,7 +159,7 @@ Alternatively, you can install step by step:
    mica --version
    ```
 
-You should see the Mica version information displayed!
+You should see the Mica version information displayed.
 
 ---
 
@@ -199,7 +199,7 @@ Let's run the classic "Hello, World!" program to ensure everything is working.
    ll ../build/hello_world
    ```   
 
-Congratulations! You've just run your first Mica program! 🎉
+Congratulations! You've just run your first Mica program. 🎉
 
 ---
 
@@ -215,7 +215,7 @@ Make sure you have set up the keyboard shortcuts mentioned in the Development Ti
 
 ### Debugging Workflow
 
-**Important:** The debugging workflow is now completely independent of which file is currently open in the editor. You can debug any compiled binary at any time!
+**Important:** The debugging workflow is independent of which file is currently open in the editor. You can debug any compiled binary at any time.
 
 1. **Build all examples (recommended for first time):**
    
@@ -229,7 +229,7 @@ Make sure you have set up the keyboard shortcuts mentioned in the Development Ti
 
 3. **Set breakpoints:**
    
-   Click in the left margin (gutter) next to line numbers where you want to pause execution. Red dots will appear indicating breakpoints. For example, set a breakpoint on the line with the `println` statement.
+   Click in the left margin (gutter) next to line numbers where you want to pause execution. Red dots will appear indicating breakpoints. For example, set a breakpoint on the line with the `writeln` statement.
 
 4. **Start debugging (F7):**
    
@@ -238,7 +238,7 @@ Make sure you have set up the keyboard shortcuts mentioned in the Development Ti
    - Launch the debugger with your selected program
    - Stop at your breakpoints automatically
    
-   **Key advantage:** You don't need to have the matching source file open - just select the binary you want to debug from the list!
+   **Key advantage:** You don't need to have the matching source file open - just select the binary you want to debug from the list.
    
 5. **Use debugging controls:**
    
@@ -273,7 +273,7 @@ Here's a typical debugging workflow:
 ```bash
 # Quick Start (First Time Setup):
 # 1. Press F1 → Tasks: Run Task → Build All Mica Examples
-#    (This compiles all 6 examples at once - only needed once!)
+#    (This compiles all 6 examples at once - only needed once)
 
 # 2. In VS Code:
 #    - Open hello_world/hello_world.mica
@@ -287,7 +287,7 @@ Here's a typical debugging workflow:
 # 1. Make changes to your source file
 # 2. Press F6 to rebuild just that file
 # 3. Press F7 and select the corresponding binary
-# 4. Debug and repeat!
+# 4. Debug and repeat
 
 # The Power of Binary Selection:
 # - You can be editing playground.mica but debug hello_world
@@ -295,7 +295,7 @@ Here's a typical debugging workflow:
 # - All compiled binaries are always available in the dropdown
 ```
 
-Now you can debug your Mica programs efficiently! 🐛✨
+Now you can debug your Mica programs efficiently. 🐛✨
 
 ---
 
@@ -347,7 +347,7 @@ This repository includes pre-configured build tasks for compiling Mica examples:
 3. Select **Build All Mica Examples**
 4. All six tutorial examples will be compiled automatically to separate directories
 
-This is ideal when you first open the workspace - it compiles all examples at once so you can immediately start debugging any of them!
+This is ideal when you first open the workspace - it compiles all examples at once so you can immediately start debugging any of them.
 
 **Build Selected Mica Example** - For individual compilation with custom options:
 1. Press `F1` to open the Command Palette
@@ -359,7 +359,7 @@ This is ideal when you first open the workspace - it compiles all examples at on
    - Quality gate options
    - Target platform
 
-Or simply press **F6** after setting up the keyboard shortcut above!
+Or simply press **F6** after setting up the keyboard shortcut above.
 
 ---
 
