@@ -13,6 +13,34 @@ No local installation required! We'll use GitHub Codespaces for a ready-to-code 
 
 ---
 
+## 📚 Tutorial Examples Overview
+
+This repository contains a curated collection of Mica programming examples, each designed to teach specific language features and concepts. Start with `hello_world` and progress through the examples as you become more comfortable with Mica.
+
+### Available Examples
+
+| Example | Description | Key Concepts |
+|---------|-------------|--------------|
+| **hello_world** | The classic first program | Basic program structure, imports, output |
+| **type_promotion** | Type casting and conversions | Implicit/explicit promotions, compile-time optimization, numeric type system |
+| **math_power** | Mathematical function library | float32/float64 functions, trigonometry, logarithms, rounding, precision differences |
+| **nesting_craziness** | Advanced nested functions | Pascal-style nested procedures, lexical scoping, complex call chains |
+| **utf_sources** | Unicode and internationalization | UTF-8 source code, UTF-32 strings, multilingual identifiers, emoji support |
+| **playground** | General experimentation space | Numeric types, pointers, flexible declaration order |
+
+### 🎯 Recommended Learning Path
+
+1. **hello_world** - Start here to understand basic program structure
+2. **type_promotion** - Learn about Mica's type system and conversions
+3. **math_power** - Explore the mathematical function library
+4. **playground** - Experiment with various Mica features
+5. **utf_sources** - Discover Mica's powerful Unicode support
+6. **nesting_craziness** - Master advanced scoping and nested functions
+
+Each example includes comprehensive comments explaining the concepts being demonstrated. Feel free to modify the examples and experiment with the code!
+
+---
+
 ## Step 1: Install Visual Studio Code
 
 Visual Studio Code (VS Code) is a free, lightweight code editor that works on any platform.
