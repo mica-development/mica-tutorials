@@ -151,8 +151,8 @@ Let's run the classic "Hello, World!" program to ensure everything is working.
 
 3. **Compile and run:**
    ```bash
-   mica --compile --link hello_world.mica
-   ./hello_world
+   mica --compile --link --source hello_world.mica --build ../build --purge
+   ../build/hello_world
    ```
 
 Congratulations! You've just run your first Mica program! 🎉
