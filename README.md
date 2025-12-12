@@ -210,35 +210,35 @@ Debugging is essential for understanding how your program works and finding issu
 ### Prerequisites
 
 Make sure you have set up the keyboard shortcuts mentioned in the Development Tips section:
-- **F6** - Build Selected Mica Example (with debug information)
-- **F7** - Debug Current Mica Binary
+- **F6** - Build Selected Mica Example or Build All Mica Examples (press F6, then choose from task list)
+- **F7** - Debug Mica Binary (select from compiled binaries)
 
 ### Debugging Workflow
 
-1. **Open your Mica source file:**
-   
-   Open `hello_world.mica` in the editor (or any other Mica program you want to debug).
+**Important:** The debugging workflow is now completely independent of which file is currently open in the editor. You can debug any compiled binary at any time!
 
-2. **Set a breakpoint:**
+1. **Build all examples (recommended for first time):**
    
-   Click in the left margin (gutter) next to a line number where you want to pause execution. A red dot will appear indicating a breakpoint. For example, set a breakpoint on the line with the `println` statement.
+   Press `F1`, type **Tasks: Run Task**, and select **Build All Mica Examples**. This compiles all tutorial programs at once, so you can debug any of them immediately.
+   
+   Alternatively, build a specific example by pressing **F6** and selecting the source file and options.
 
-3. **Compile with debug information (F6):**
+2. **Open the source file you want to debug:**
    
-   Press **F6** to build your Mica program. You'll be prompted to select:
-   - **Source file:** Choose your `.mica` file (e.g., `hello_world.mica`)
-   - **Optimization level:** Select **debug** (includes debug symbols)
-   - **Quality gate:** Select your preferred quality level
-   - **Target platform:** Select your target platform
-   
-   The program will be compiled with debug information and placed in the `build` directory.
+   Open the `.mica` source file in the editor (e.g., `hello_world.mica`). This helps you set breakpoints and follow along with the code.
 
-4. **Start debugging session (F7):**
+3. **Set breakpoints:**
+   
+   Click in the left margin (gutter) next to line numbers where you want to pause execution. Red dots will appear indicating breakpoints. For example, set a breakpoint on the line with the `println` statement.
+
+4. **Start debugging (F7):**
    
    Press **F7** to start the debugging session. VS Code will:
-   - Prompt you to select the binary to debug (if multiple exist)
-   - Launch the debugger with your compiled program
-   - Stop at your breakpoint
+   - **Prompt you to select which binary to debug** from a dropdown list (hello_world, math_power, nesting_craziness, etc.)
+   - Launch the debugger with your selected program
+   - Stop at your breakpoints automatically
+   
+   **Key advantage:** You don't need to have the matching source file open - just select the binary you want to debug from the list!
    
 5. **Use debugging controls:**
    
@@ -271,18 +271,28 @@ Make sure you have set up the keyboard shortcuts mentioned in the Development Ti
 Here's a typical debugging workflow:
 
 ```bash
-# 1. Navigate to your example directory
-cd hello_world
+# Quick Start (First Time Setup):
+# 1. Press F1 → Tasks: Run Task → Build All Mica Examples
+#    (This compiles all 6 examples at once - only needed once!)
 
 # 2. In VS Code:
-#    - Open hello_world.mica
+#    - Open hello_world/hello_world.mica
 #    - Set a breakpoint on the println line
-#    - Press F6 and select:
-#      * Source: hello_world.mica
-#      * Optimization: debug
 #    - Press F7 to start debugging
+#    - Select "hello_world" from the binary dropdown
 #    - Use F10 to step through the code
 #    - Press F5 to continue execution
+
+# Iterative Development:
+# 1. Make changes to your source file
+# 2. Press F6 to rebuild just that file
+# 3. Press F7 and select the corresponding binary
+# 4. Debug and repeat!
+
+# The Power of Binary Selection:
+# - You can be editing playground.mica but debug hello_world
+# - No need to switch files just to start debugging
+# - All compiled binaries are always available in the dropdown
 ```
 
 Now you can debug your Mica programs efficiently! 🐛✨
@@ -291,10 +301,19 @@ Now you can debug your Mica programs efficiently! 🐛✨
 
 ## 🛠️ Development Tips
 
-For a better development experience, add these shortcuts to your user keybindings:
-- **Ctrl+0** - Reset Zoom
-- **F6** - Debug Current Mica Binary
-- **F7** - Build Selected Mica Example
+### Keyboard Shortcuts for Efficient Development
+
+For a streamlined development experience, this repository includes pre-configured tasks and recommended keyboard shortcuts that make building and debugging Mica programs quick and easy.
+
+**Recommended Shortcuts:**
+- **Ctrl+0** - Reset Zoom (helpful when sharing screens or adjusting view)
+- **F6** - Build Selected Mica Example (compile individual programs with custom options)
+- **F7** - Debug Mica Binary (select and debug any compiled binary)
+
+**Why these shortcuts are powerful:**
+- **No file dependency:** You don't need to have the correct source file open - just press F7 and select which binary to debug from a dropdown
+- **Fast iteration:** Press F6 to quickly rebuild with different optimization levels or platforms
+- **One-click debugging:** F7 starts debugging immediately with full breakpoint and variable inspection support
 
 To add them:
 1. Open **Preferences: Open Keyboard Shortcuts (JSON)** (Ctrl+K Ctrl+S, then click the file icon)
@@ -309,26 +328,36 @@ To add them:
   {
     "key": "f6",
     "command": "workbench.action.tasks.runTask",
-    "args": "Build Selected Mica Example"
+    "when": "!terminalFocus"
   },
   {
     "key": "f7",
     "command": "workbench.action.debug.selectandstart",
-    "args": {
-      "config": "Debug Current Mica Binary"
-    },
-    "when": "debuggersAvailable"
+    "when": "debuggersAvailable && !terminalFocus"
   }
 ]
 ```
-### Using the Build Task
+### Using the Build Tasks
 
-This repository includes a pre-configured build task for compiling Mica examples:
+This repository includes pre-configured build tasks for compiling Mica examples:
 
+**Build All Mica Examples** - Perfect for initial setup or testing:
+1. Press `F1` to open the Command Palette
+2. Type **Tasks: Run Task**
+3. Select **Build All Mica Examples**
+4. All six tutorial examples will be compiled automatically to separate directories
+
+This is ideal when you first open the workspace - it compiles all examples at once so you can immediately start debugging any of them!
+
+**Build Selected Mica Example** - For individual compilation with custom options:
 1. Press `F1` to open the Command Palette
 2. Type **Tasks: Run Task**
 3. Select **Build Selected Mica Example**
-4. Follow the prompts to select your target file and build options
+4. Follow the prompts to select:
+   - Your target source file
+   - Optimization level (debug/release/constant_folding)
+   - Quality gate options
+   - Target platform
 
 Or simply press **F6** after setting up the keyboard shortcut above!
 

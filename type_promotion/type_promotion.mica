@@ -33,7 +33,7 @@
 
     All promotions in this example occur at compile-time, demonstrating Mica's powerful compile-time type system and optimization capabilities.
 }
-program promotions;
+program type_promotion;
 
 imp 
     writeln : std;

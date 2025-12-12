@@ -46,10 +46,10 @@ imp writeln : std;
 var straße          : int32;  { german: street }
     Вулиця          : int32;  { ukrainian: street }
     ΤόποςΚατοικίας  : int32;  { greek: place of residence }
-    ストリート       : int32;  { japanese: street (katakana) }
+    ストリート        : int32;  { japanese: street (katakana) }
     Δρόμος          : int32;  { greek: street/road }
     Улица           : int32;  { russian: street }
-    长变量名        : int32;   { chinese: long variable name }
+    长变量名          : int32;  { chinese: long variable name }
     
     { string variables for international greetings }
     japanese, chinese, korean, arabic, hebrew, thai, hindi, greek, russian : string;
@@ -61,19 +61,19 @@ begin
     { East Asian languages with country flag emojis }
     japanese := "こんにちは世界！🎌 プログラミングは楽しいです。";        { Hello World! Programming is fun. }
     chinese  := "你好世界！🇨🇳 编程很有趣。";                          { Hello World! Programming is interesting. }
-    korean   := "안녕하세요 세계！🇰🇷 프로그래밍은 재미있습니다。";     { Hello World! Programming is fun. }
+    korean   := "안녕하세요 세계！🇰🇷 프로그래밍은 재미있습니다。";          { Hello World! Programming is fun. }
     
     { Right-to-left scripts }
-    arabic   := "مرحبا بالعالم！🌍 البرمجة ممتعة جداً。";              { Hello World! Programming is very fun. }
-    hebrew   := "שלום עולם！🇮🇱 תכנות זה כיף מאוד。";                 { Hello World! Programming is very fun. }
+    arabic   := "مرحبا بالعالم！🌍 البرمجة ممتعة جداً。";            { Hello World! Programming is very fun. }
+    hebrew   := "שלום עולם！🇮🇱 תכנות זה כיף מאוד。";                     { Hello World! Programming is very fun. }
     
     { South and Southeast Asian scripts }
-    thai     := "สวัสดีชาวโลก！🇹🇭 การเขียนโปรแกรมสนุกมาก。";          { Hello World! Programming is very fun. }
-    hindi    := "नमस्ते दुनिया！🇮🇳 प्रोग्रामिंग बहुत मज़ेदार है।";      { Hello World! Programming is very fun. }
+    thai     := "สวัสดีชาวโลก！🇹🇭 การเขียนโปรแกรมสนุกมาก。";                { Hello World! Programming is very fun. }
+    hindi    := "नमस्ते दुनिया！🇮🇳 प्रोग्रामिंग बहुत मज़ेदार है।";                  { Hello World! Programming is very fun. }
     
     { European languages with special characters }
     greek    := "Γεια σου κόσμε！🇬🇷 Ο προγραμματισμός είναι διασκεδαστικός。"; { Hello World! Programming is fun. }
-    russian  := "Привет мир！🇷🇺 Программирование — это весело。";       { Hello World! Programming is fun. }
+    russian  := "Привет мир！🇷🇺 Программирование — это весело。";              { Hello World! Programming is fun. }
     
     { Emoji showcase - because why not? }
     emoji    := "🚀 Mica Compiler 💻 UTF-32 ✅ 世界 🌏 🌟 Unicode ♾️ 🎉";
@@ -82,6 +82,7 @@ begin
     math     := "∀x ∈ ℝ: x² ≥ 0  •  π ≈ 3.14159  •  ∞ > 1000000  •  √2 ≈ 1.414";
     symbols  := "Currency: $ € £ ¥ ₹ ₽  •  Music: ♪ ♫ ♬ 🎵 🎶  •  Cards: ♠ ♥ ♦ ♣";
     
+    writeln("");
     writeln("=== Languages of the World ===");
     writeln("");
     writeln("🇯🇵 Japanese: %ls", japanese);
@@ -117,19 +118,19 @@ var résultat    : int32;  { French: result }
     نتيجة       : int32;  { Arabic: result }
 begin
     résultat := straße + Вулиця;                              { German + Ukrainian }
-    結果 := ΤόποςΚατοικίας * Δρόμος;                          { Greek * Greek }
-    نتيجة := ストリート + 长变量名;                            { Japanese + Chinese }
+    結果 := ΤόποςΚατοικίας * Δρόμος;                           { Greek * Greek }
+    نتيجة := ストリート + 长变量名;                              { Japanese + Chinese }
     
     writeln("🇫🇷 Résultat (German + Ukrainian):    %d", résultat);
-    writeln("🇯🇵 結果 (Greek × Greek):              %d", 結果);
+    writeln("🇯🇵 結果 (Greek × Greek):             %d", 結果);
     writeln("🇸🇦 نتيجة (Japanese + Chinese):       %d", نتيجة);
-    writeln("🌍 Combined (JA + CN + GR × GR):      %d", ストリート + 长变量名 + ΤόποςΚατοικίας * Δρόμος);
+    writeln("🌍 Combined (JA + CN + GR × GR):     %d", ストリート + 长变量名 + ΤόποςΚατοικίας * Δρόμος);
 end;
 
 begin { main program }
-    writeln("╔════════════════════════════════════════════════════════╗");
+    writeln("╔═════════════════════════════════════════════════════╗");
     writeln("║  🌍 Mica UTF-8 Source & UTF-32 Strings Showcase 🌍  ║");
-    writeln("╚════════════════════════════════════════════════════════╝");
+    writeln("╚═════════════════════════════════════════════════════╝");
     writeln("");
     writeln("💡 Did you know? In Mica, you can write code in ANY language!");
     writeln("");
@@ -138,31 +139,31 @@ begin { main program }
     straße := 0;              { German }
     Вулиця := 1;              { Ukrainian }
     ΤόποςΚατοικίας := 2;      { Greek }
-    ストリート := 3;           { Japanese }
+    ストリート := 3;            { Japanese }
     Δρόμος := 4;              { Greek }
     Улица := 5;               { Russian }
-    长变量名 := 6;            { Chinese }
+    长变量名 := 6;             { Chinese }
 
     writeln("=== Multilingual Variable Assignment ===");
     writeln("");
     writeln("🇩🇪 straße (German):           %d", straße);
     writeln("🇺🇦 Вулиця (Ukrainian):        %d", Вулиця);
     writeln("🇬🇷 ΤόποςΚατοικίας (Greek):    %d", ΤόποςΚατοικίας);
-    writeln("🇯🇵 ストリート (Japanese):      %d", ストリート);
+    writeln("🇯🇵 ストリート (Japanese):     %d", ストリート);
     writeln("🇬🇷 Δρόμος (Greek):            %d", Δρόμος);
     writeln("🇷🇺 Улица (Russian):           %d", Улица);
-    writeln("🇨🇳 长变量名 (Chinese):         %d", 长变量名);
+    writeln("🇨🇳 长变量名 (Chinese):        %d", 长变量名);
     writeln("");
     
     { call procedures with international names }
     ΥπολογίστεΚάτιΕιδικό();   { call Greek procedure }
-    절차의긴이름();            { call Korean procedure }
+    절차의긴이름();              { call Korean procedure }
     InCácChuỗiQuốcTế();       { call Vietnamese procedure }
     
     writeln("");
-    writeln("╔════════════════════════════════════════════════════════╗");
+    writeln("╔══════════════════════════════════════════════════════╗");
     writeln("║     ✨ This is the power of Unicode in Mica! ✨      ║");
-    writeln("╚════════════════════════════════════════════════════════╝");
+    writeln("╚══════════════════════════════════════════════════════╝");
     
     exit := 0  { return success to operating system }
 end.

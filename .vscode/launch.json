@@ -5,10 +5,10 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Current Mica Binary",
+      "name": "Debug Mica Binary",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/${fileBasenameNoExtension}",
+      "program": "${workspaceFolder}/build/${input:binaryToDebug}/${input:binaryToDebug}",
       "args": [],
       "stopAtEntry": true,
       "cwd": "${workspaceFolder}",
@@ -37,6 +37,22 @@
         "exceptions": true
       },
       "internalConsoleOptions": "openOnSessionStart"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "binaryToDebug",
+      "type": "pickString",
+      "description": "Select binary to debug",
+      "default": "hello_world",
+      "options": [
+        "hello_world",
+        "math_power",
+        "nesting_craziness",
+        "playground",
+        "type_promotion",
+        "utf_sources"
+      ]
     }
   ]
 }

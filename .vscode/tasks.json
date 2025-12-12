@@ -2,25 +2,27 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Build All Mica Examples",
+      "type": "shell",
+      "command": "rm -rf build && for file in hello_world/hello_world.mica math_power/math_power.mica nesting_craziness/nesting_craziness.mica playground/playground.mica type_promotion/type_promotion.mica utf_sources/utf_sources.mica; do dir=$(dirname \"$file\"); base=$(basename \"$file\" .mica); echo \"Building $file...\"; /usr/bin/mica --purge --compile --link --optimize debug --quality no_quality_test_runs --platform Linux,AMD64,UTF-32 --export --source \"$file\" --build \"build/$dir\" || exit 1; done",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Build Selected Mica Example",
       "type": "shell",
-      "command": "/usr/bin/mica",
-      "args": [
-        "--purge",
-        "--compile",
-        "--link",
-        "--optimize",
-        "${input:optimizationLevel}",
-        "--quality",
-        "${input:qualityGate}",
-        "--platform",
-        "${input:targetPlatform}",
-        "--export",
-        "--source",
-        "${input:exampleFile}",
-        "--build",
-        "build"
-      ],
+      "command": "file=\"${input:exampleFile}\"; dir=$(dirname \"$file\"); /usr/bin/mica --purge --compile --link --optimize ${input:optimizationLevel} --quality ${input:qualityGate} --platform ${input:targetPlatform} --export --source \"$file\" --build \"build/$dir\"",
+      "args": [],
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -42,7 +44,12 @@
       "description": "Select example file to build",
       "default": "hello_world/hello_world.mica",
       "options": [
-        "hello_world/hello_world.mica"
+        "hello_world/hello_world.mica",
+        "math_power/math_power.mica",
+        "nesting_craziness/nesting_craziness.mica",
+        "playground/playground.mica",
+        "type_promotion/promotions.mica",
+        "utf_sources/utf_sources.mica"
       ]
     },
     {
@@ -76,6 +83,20 @@
         "static_analyzer",
         "constant_folding",
         "intermediate_code"
+      ]
+    },
+    {
+      "id": "binaryToDebug",
+      "type": "pickString",
+      "description": "Select binary to debug",
+      "default": "hello_world",
+      "options": [
+        "hello_world",
+        "math_power",
+        "nesting_craziness",
+        "playground",
+        "promotions",
+        "utf_sources"
       ]
     }
   ]
