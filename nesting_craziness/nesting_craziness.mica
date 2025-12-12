@@ -1,0 +1,218 @@
+{ 
+    Mica Nested Functions Example - "Nesting Craziness"
+
+    This example demonstrates one of Mica's most powerful features inherited from Pascal:
+    nested function definitions with full access to parent scope variables.
+
+    Key Concepts Covered:
+
+    1. NESTED PROCEDURE DEFINITIONS
+       - Procedures can be defined inside other procedures
+       - Creates a hierarchy of scopes (Level1 contains Level2, which contains Level3, etc.)
+       - Each level can access and modify variables from all parent scopes
+       - Demonstrates up to 5 levels of nesting depth
+
+    2. SCOPE AND VARIABLE ACCESS
+       - Global variables (x, y, z) are accessible from all nested levels
+       - Each procedure has its own local variable (l1, l2, l3, l4, l5)
+       - Inner procedures can read AND write to outer procedure's local variables
+       - This is called "lexical scoping" or "static scoping"
+       - Example: Level5 can access and modify l1, l2, l3, l4 from parent scopes
+
+    3. CALL CHAIN COMPLEXITY
+       - Level1 → Level2 → Level3 → Level4 → Level5 (first call chain)
+       - Level4 conditionally calls Level2 again when x = 50
+       - This creates recursive-like behavior without actual recursion
+       - Level2 → Level3 → Level4 → Level5 (second call chain)
+       - Demonstrates how nested calls can create complex execution flows
+
+    4. VARIABLE STATE TRACKING
+       - Global x: Incremented by +10 at each level (10 → 20 → 30 → 40 → 50)
+       - Global y: Multiplied by 4 in Level3 (6 → 24, then 24 → 96)
+       - Global z: Transformed by formula in Level5 (7 → 40 → 238)
+       - Local variables accumulate modifications from nested calls
+       - Final results show cumulative effect of all nested operations
+
+    5. EXECUTION FLOW VISUALIZATION
+       - Numbers printed on entry show nesting depth (1, 2, 3, 4, 5)
+       - Negative numbers on exit show unwinding (-5, -4, -3, -2, -1)
+       - The output pattern reveals the complete call stack behavior
+       - When Level4 conditionally calls Level2, you see the pattern repeat
+
+    Pascal Heritage:
+    - Nested functions are a classic Pascal feature
+    - Allows elegant solutions to problems requiring state sharing
+    - More powerful than many modern languages
+    - Mica preserves this powerful feature for complex algorithm implementation
+
+    Understanding the Output:
+    - First descent: 1 → 2 → 3 → 4 → 5 (entering nested levels)
+    - First ascent: -5 (Level5 exits)
+    - Second descent: 2 → 3 → 4 → 5 (Level4's conditional call to Level2)
+    - Second ascent: -5 → -4 (Level5 and Level4 exit)
+    - Variable dumps: l3=7, l2=22 (showing accumulated modifications)
+    - Final ascent: -3 → -2 (Level3 and Level2 exit)
+    - Third descent: -4 (Level4 final exit from first call chain)
+    - More dumps: l3=7, l2=22 (second Level3 and Level2 variables)
+    - Final results: x=90, y=96, z=238, l1=16 (accumulated from all operations)
+    - End: -1 (Level1 exits)
+
+    This "craziness" demonstrates why understanding scope and call flow is crucial when using nested functions. 
+    While powerful, they require careful mental tracking of variable states across multiple nesting levels.
+}
+program nesting_craziness;
+
+imp 
+    writeln : std;    { import standard library for console output }
+
+var 
+    x, y, z : int32;  { global variables accessible from all nested procedures }
+
+{ Level 1: Outermost procedure - initializes global variables and starts the chain }
+procedure Level1();
+var l1 : int32;  { local to level1, but accessible to all nested procedures inside }
+
+{ Level 2: First nested level - increments x and calls Level3 }
+procedure Level2();
+var l2 : int32;  { local to level2, accessible to level3, level4, level5 }
+
+{ Level 3: Second nested level - multiplies y and calls Level4 }
+procedure Level3();
+var l3 : int32;  { local to level3, accessible to level4 and level5 }
+{ Level 4: Third nested level - contains conditional logic to call Level2 again }
+
+procedure Level4();
+var l4 : int32;  { local to level4, accessible to level5 }
+
+{ Level 5: Innermost level - modifies variables from ALL parent scopes }
+procedure Level5();
+var l5 : int32;  { local to level5 only }
+begin { level 5 }
+    writeln("%d", 5);  { entry marker }
+    x := x + 10;       { modify global x }
+    z := z * 6 - 2;    { transform global z: 7→40, then 40→238 }
+
+    { demonstrate access to ALL parent local variables }
+    l5 := l5 + 5;      { modify own local }
+    l4 := l4 + 5;      { modify level4's local }
+    l3 := l3 + 5;      { modify level3's local }
+    l2 := l2 + 5;      { modify level2's local }
+    l1 := l1 + 5;      { modify level1's local }
+    writeln("%d", -5); { exit marker }
+end;
+
+begin { level 4 }
+    writeln("%d", 4);  { entry marker }
+    l4 := 0;           { initialize local variable }
+    x := x + 10;       { increment global x }
+    
+    Level5();          { call deepest level }
+
+    { modify parent locals after level5 returns }
+    l2 := l2 + 2;      { modify level2's local }
+    l3 := l3 + 2;      { modify level3's local }
+    l1 := l1 + 3;      { modify level1's local }
+
+    { conditional recursion: when x reaches 50, call level2 again! }
+    if x = 50 then
+        Level2();      { this creates the second descent-ascent cycle }
+
+    writeln("%d", -4); { exit marker }
+end;
+
+begin { level 3 }
+    writeln("%d", 3);  { entry marker }
+    l3 := 0;           { initialize local variable }
+    x := x + 10;       { increment global x }
+    y := y * 4;        { multiply global y: 6→24, then 24→96 }
+    
+    Level4();          { call level4 (which may trigger second chain) }
+
+    l2 := l2 + 15;     { modify level2's local }
+    writeln("%d", l3); { print accumulated l3 value }
+    writeln("%d", -3); { exit marker }
+end;
+
+begin { level 2 }
+    writeln("%d", 2);  { entry marker }
+    l2 := 0;           { initialize local variable }
+    x := x + 10;       { increment global x }
+
+    Level3();          { call level3 }
+
+    writeln("%d", l2); { print accumulated l2 value }
+    writeln("%d", -2); { exit marker }
+end;
+
+begin { level 1 }
+    writeln("%d", 1);  { entry marker }
+    l1 := 0;           { initialize local variable }
+
+    { initialize global variables }
+    x := 10;
+    y := 6;
+    z := 7;
+
+    Level2();          { start the nested call chain }
+    
+    { after all nested calls complete, print final results }
+    writeln("%d", x);  { final x = 90 (incremented 9 times by +10) }
+    writeln("%d", y);  { final y = 96 (6 * 4 * 4) }
+    writeln("%d", z);  { final z = 238 (formula applied twice) }
+    writeln("%d", l1); { final l1 = 16 (accumulated from nested calls) }
+    writeln("%d", -1); { exit marker }
+end;
+
+begin { Level 0: main program }
+    Level1();          { start the nesting craziness! }
+    exit := 0          { return success to operating system }
+end.
+
+{
+    Expected Output Explanation:
+    
+    The output demonstrates the complete execution flow through nested function calls. 
+    Each number shows entry (positive) or exit (negative) from a procedure level.
+    
+    Output Line by Line:
+        1          → enter Level1, initialize globals (x=10, y=6, z=7)
+        2          → enter Level2 (x becomes 20)
+        3          → enter Level3 (x becomes 30, y becomes 24)
+        4          → enter Level4 (x becomes 40)
+        5          → enter Level5 (x becomes 50, z becomes 40, all locals += 5)
+        -5         → exit Level5
+        2          → re-enter Level2 (x=50 triggers conditional in Level4!)
+        3          → enter Level3 again (x becomes 60, y becomes 96)
+        4          → enter Level4 again (x becomes 70)
+        5          → enter Level5 again (x becomes 80, z becomes 238, all locals += 5 again)
+        -5         → exit Level5 (second time)
+        -4         → exit Level4 (second time)
+        7          → print l3 value from second Level3 call
+        -3         → exit Level3 (second time)
+        22         → print l2 value from second Level2 call (0+5+2+15=22)
+        -2         → exit Level2 (second time)
+        -4         → exit Level4 (first time, after conditional call completes)
+        7          → print l3 value from first Level3 call
+        -3         → exit Level3 (first time)
+        22         → print l2 value from first Level2 call
+        -2         → exit Level2 (first time)
+        90         → print final x (10 + 10*8 = 90)
+        96         → print final y (6 * 4 * 4 = 96)
+        238        → print final z ((7*6-2)*6-2 = 238)
+        16         → print final l1 (0 + 5 + 5 + 3 + 3 = 16)
+        -1         → exit Level1
+    
+    Key Insights:
+    - x is incremented +10 a total of 8 times (not 9, because Level5 doesn't increment it on first call)
+    - actually, x is incremented in: Level2(×2), Level3(×2), Level4(×2), Level5(×2) = 8 times
+    - wait, let me recalculate: x gets +10 in Level2, Level3, Level4, Level5 per chain
+    - first chain: 10→20(L2)→30(L3)→40(L4)→50(L5) = 4 increments
+    - second chain starts at 50: 50→60(L2)→70(L3)→80(L4)→90(L5) = 4 more increments
+    - total: 10 + (4+4)*10 = 90 ✓
+    
+    - y is multiplied ×4 twice in Level3 (first and second calls): 6 → 24 → 96 ✓
+    - z formula (z*6-2) applied twice in Level5: 7 → 40 → 238 ✓
+    - l1 accumulates: 0 + 5(L5 first) + 3(L4 first) + 5(L5 second) + 3(L4 second) = 16 ✓
+    
+    This example shows why nested functions require careful analysis!
+}
