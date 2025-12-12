@@ -1,0 +1,187 @@
+{ 
+    Mica Mathematical Functions Example
+
+    This example demonstrates the comprehensive mathematical function library available in Mica,
+    showcasing both float32 and float64 implementations of standard math functions.
+
+    Key Concepts Covered:
+
+    1. SQUARE ROOT FUNCTIONS
+       - sqrtf(x) and sqrt(x) - Calculate square roots for float32 and float64
+       - Essential for distance calculations, physics simulations, and geometric operations
+
+    2. TRIGONOMETRIC FUNCTIONS
+       - sin, cos, tan - Standard trigonometric functions for angles in radians
+       - Fundamental for graphics, physics, and engineering calculations
+       - Examples include calculating values at special angles (0, π/2)
+
+    3. INVERSE TRIGONOMETRIC FUNCTIONS
+       - arcsin, arccos, arctan - Inverse functions returning angles in radians
+       - Used for angle calculations from ratio values
+       - Useful in navigation, robotics, and computer graphics
+
+    4. LOGARITHMIC FUNCTIONS
+       - ln(x) - Natural logarithm (base e)
+       - log10(x) - Common logarithm (base 10)
+       - Critical for exponential growth/decay models and scientific calculations
+
+    5. EXPONENTIAL FUNCTIONS
+       - exp(x) - Raises e to the power of x
+       - Fundamental for compound interest, population growth, and decay models
+
+    6. POWER FUNCTIONS
+       - pow(base, exponent) - Raises base to any power
+       - General-purpose exponentiation for any numeric calculations
+
+    7. ABSOLUTE VALUE
+       - abs(x) - Returns the absolute value of x
+       - Removes the sign, useful for distance and magnitude calculations
+
+    8. ROUNDING FUNCTIONS
+       - round(x) - Rounds to nearest integer
+       - trunc(x) - Truncates decimal part (rounds toward zero)
+       - floor(x) - Rounds down to nearest integer
+       - ceil(x) - Rounds up to nearest integer
+       - Each serves different rounding needs in financial and scientific applications
+
+    9. MODULO OPERATION
+       - fmod(x, y) - Floating-point remainder of x/y
+       - Useful for wrapping values and periodic calculations
+
+    10. PRECISION COMPARISON
+        - Direct comparison of float32 vs float64 precision
+        - Demonstrates the trade-off between memory usage and numerical accuracy
+        - float32: ~7 decimal digits of precision
+        - float64: ~15 decimal digits of precision
+
+    Library Import:
+    - All functions imported from 'libm' (Mica's math library)
+    - Functions ending with 'f' are float32 versions (e.g., sqrtf, sinf)
+    - Functions without suffix are float64 versions (e.g., sqrt, sin)
+
+    This example helps you understand when to use float32 (performance-critical, memory-constrained applications) 
+    versus float64 (scientific calculations requiring high precision).
+}
+program math_power;
+
+imp 
+    writeln : std;
+    sqrtf, sinf, cosf, tanf, arctanf, arcsinf, arccosf, lnf, log10f, expf, powf, absf, roundf, truncf, floorf, ceilf, fmodf : libm;
+    sqrt, sin, cos, tan, arctan, arcsin, arccos, ln, log10, exp, pow, abs, round, trunc, floor, ceil, fmod                  : libm;
+
+var
+    x32, result32: float32;
+    x64, result64: float64;
+
+begin { main program }
+    writeln("=== Float32 Math Functions ===");
+    writeln("");
+    
+    // square root
+    x32 := 16.0 as float32;
+    result32 := sqrtf(x32);
+    writeln("sqrtf(16.0) = %f", result32);
+    
+    // trigonometric functions
+    x32 := 0.0 as float32;
+    writeln("sinf(0.0) = %f", sinf(x32));
+    writeln("cosf(0.0) = %f", cosf(x32));
+    writeln("tanf(0.0) = %f", tanf(x32));
+    
+    x32 := 1.5708 as float32;  // Pi/2
+    writeln("sinf(pi/2) = %f", sinf(x32));
+    writeln("cosf(pi/2) = %f", cosf(x32));
+    
+    // inverse trigonometric functions
+    x32 := 1.0 as float32;
+    writeln("arctanf(1.0) = %f", arctanf(x32));
+    x32 := 0.5 as float32;
+    writeln("arcsinf(0.5) = %f", arcsinf(x32));
+    writeln("arccosf(0.5) = %f", arccosf(x32));
+    
+    // logarithmic and exponential
+    x32 := 2.718282 as float32;
+    writeln("lnf(e) = %f", lnf(x32));
+    x32 := 100.0 as float32;
+    writeln("log10f(100.0) = %f", log10f(x32));
+    x32 := 1.0 as float32;
+    writeln("expf(1.0) = %f", expf(x32));
+    
+    // power and absolute value
+    writeln("powf(2.0, 8.0) = %f", powf(2.0 as float32, 8.0 as float32));
+    x32 := -42.5 as float32;
+    writeln("absf(-42.5) = %f", absf(x32));
+    
+    // rounding functions
+    x32 := 3.7 as float32;
+    writeln("roundf(3.7) = %f", roundf(x32));
+    writeln("truncf(3.7) = %f", truncf(x32));
+    writeln("floorf(3.7) = %f", floorf(x32));
+    writeln("ceilf(3.7) = %f", ceilf(x32));
+    
+    // floating-point modulo
+    writeln("fmodf(10.5, 3.0) = %f", fmodf(10.5 as float32, 3.0 as float32));
+    
+    writeln("");
+    writeln("=== Float64 Math Functions ===");
+    writeln("");
+    
+    // square root
+    x64 := 16.0;
+    result64 := sqrt(x64);
+    writeln("sqrt(16.0) = %f", result64);
+    
+    // trigonometric functions
+    x64 := 0.0;
+    writeln("sin(0.0) = %f", sin(x64));
+    writeln("cos(0.0) = %f", cos(x64));
+    writeln("tan(0.0) = %f", tan(x64));
+    
+    x64 := 1.5707963267948966;  // Pi/2 with more precision
+    writeln("sin(pi/2) = %f", sin(x64));
+    writeln("cos(pi/2) = %f", cos(x64));
+    
+    // inverse trigonometric functions
+    x64 := 1.0;
+    writeln("arctan(1.0) = %f", arctan(x64));
+    x64 := 0.5;
+    writeln("arcsin(0.5) = %f", arcsin(x64));
+    writeln("arccos(0.5) = %f", arccos(x64));
+    
+    // logarithmic and exponential
+    x64 := 2.718281828459045;
+    writeln("ln(e) = %f", ln(x64));
+    x64 := 100.0;
+    writeln("log10(100.0) = %f", log10(x64));
+    x64 := 1.0;
+    writeln("exp(1.0) = %f", exp(x64));
+    
+    // power and absolute value
+    writeln("pow(2.0, 8.0) = %f", pow(2.0, 8.0));
+    x64 := -42.5;
+    writeln("abs(-42.5) = %f", abs(x64));
+    
+    // rounding functions
+    x64 := 3.7;
+    writeln("round(3.7) = %f", round(x64));
+    writeln("trunc(3.7) = %f", trunc(x64));
+    writeln("floor(3.7) = %f", floor(x64));
+    writeln("ceil(3.7) = %f", ceil(x64));
+    
+    // floating-point modulo
+    writeln("fmod(10.5, 3.0) = %f", fmod(10.5, 3.0));
+    
+    writeln("");
+    writeln("=== Comparison: Float32 vs Float64 Precision ===");
+    writeln("");
+    
+    x32 := 3.14159265 as float32;
+    x64 := 3.14159265358979323846;
+    writeln("float32 pi: %.7f", x32);
+    writeln("float64 pi: %.15f", x64);
+    
+    result32 := sinf(x32);
+    result64 := sin(x64);
+    writeln("sinf(pi_f32) = %f", result32);
+    writeln("sin(pi_f64) = %f", result64);
+end.
