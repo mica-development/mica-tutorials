@@ -1,6 +1,6 @@
 # 🚀 Getting Started with the Mica Programming Language
 
-Welcome to the Mica programming language tutorials! This guide will walk you through everything you need to start developing with Mica using GitHub Codespaces and Visual Studio Code.
+Welcome to the Mica programming language tutorials! This guide provides an overview of available examples followed by a comprehensive step-by-step guide to get you started with Mica development using GitHub Codespaces and Visual Studio Code.
 
 ## 📋 Prerequisites
 
@@ -24,9 +24,9 @@ This repository contains a curated collection of Mica programming examples, each
 | **hello_world** | The classic first program | Basic program structure, imports, output |
 | **type_promotion** | Type casting and conversions | Implicit/explicit promotions, compile-time optimization, numeric type system |
 | **math_power** | Mathematical function library | float32/float64 functions, trigonometry, logarithms, rounding, precision differences |
-| **nesting_craziness** | Advanced nested functions | Pascal-style nested procedures, lexical scoping, complex call chains |
-| **utf_sources** | Unicode and internationalization | UTF-8 source code, UTF-32 strings, multilingual identifiers, emoji support |
 | **playground** | General experimentation space | Numeric types, pointers, flexible declaration order |
+| **utf_sources** | Unicode and internationalization | UTF-8 source code, UTF-32 strings, multilingual identifiers, emoji support |
+| **nesting_craziness** | Advanced nested functions | Pascal-style nested procedures, lexical scoping, complex call chains |
 
 ### 🎯 Recommended Learning Path
 
