@@ -175,6 +175,92 @@ Congratulations! You've just run your first Mica program! 🎉
 
 ---
 
+## Step 6: Debug Your Mica Program in VS Code
+
+Debugging is essential for understanding how your program works and finding issues. VS Code provides powerful debugging capabilities for Mica programs using keyboard shortcuts.
+
+### Prerequisites
+
+Make sure you have set up the keyboard shortcuts mentioned in the Development Tips section:
+- **F6** - Build Selected Mica Example (with debug information)
+- **F7** - Debug Current Mica Binary
+
+### Debugging Workflow
+
+1. **Open your Mica source file:**
+   
+   Open `hello_world.mica` in the editor (or any other Mica program you want to debug).
+
+2. **Set a breakpoint:**
+   
+   Click in the left margin (gutter) next to a line number where you want to pause execution. A red dot will appear indicating a breakpoint. For example, set a breakpoint on the line with the `println` statement.
+
+3. **Compile with debug information (F6):**
+   
+   Press **F6** to build your Mica program. You'll be prompted to select:
+   - **Source file:** Choose your `.mica` file (e.g., `hello_world.mica`)
+   - **Optimization level:** Select **debug** (includes debug symbols)
+   - **Quality gate:** Select your preferred quality level
+   - **Target platform:** Select your target platform
+   
+   The program will be compiled with debug information and placed in the `build` directory.
+
+4. **Start debugging session (F7):**
+   
+   Press **F7** to start the debugging session. VS Code will:
+   - Prompt you to select the binary to debug (if multiple exist)
+   - Launch the debugger with your compiled program
+   - Stop at your breakpoint
+   
+5. **Use debugging controls:**
+   
+   Once paused at a breakpoint, use the debugging toolbar or keyboard shortcuts:
+   - **Continue (F5):** Resume execution until the next breakpoint
+   - **Step Over (F10):** Execute the current line and move to the next
+   - **Step Into (F11):** Enter into function calls
+   - **Step Out (Shift+F11):** Exit the current function
+   - **Restart (Ctrl+Shift+F5):** Restart the debugging session
+   - **Stop (Shift+F5):** End the debugging session
+
+6. **Inspect variables:**
+   
+   While debugging, you can:
+   - Hover over variables to see their values
+   - View the **Variables** panel in the left sidebar to see all local and global variables
+   - Use the **Watch** panel to monitor specific expressions
+   - Check the **Call Stack** to understand the execution flow
+
+### Quick Debugging Tips
+
+- **Build before debugging:** Always press **F6** first to ensure your latest code changes are compiled
+- **Debug vs. Release builds:** Use `--optimize debug` for debugging (larger binaries with symbols) and `--optimize release` for production (smaller, optimized binaries)
+- **Multiple breakpoints:** Set breakpoints at different locations to step through complex logic
+- **Debug Console:** Use the Debug Console to evaluate expressions while debugging
+- **Conditional breakpoints:** Right-click a breakpoint to add conditions
+
+### Example Debugging Session
+
+Here's a typical debugging workflow:
+
+```bash
+# 1. Navigate to your example directory
+cd hello_world
+
+# 2. In VS Code:
+#    - Open hello_world.mica
+#    - Set a breakpoint on the println line
+#    - Press F6 and select:
+#      * Source: hello_world.mica
+#      * Optimization: debug
+#    - Press F7 to start debugging
+#    - Use F10 to step through the code
+#    - Press F5 to continue execution
+```
+
+Now you can debug your Mica programs efficiently! 🐛✨
+
+---
+
 ## 🛠️ Development Tips
 
 For a better development experience, add these shortcuts to your user keybindings:
